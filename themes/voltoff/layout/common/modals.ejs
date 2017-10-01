@@ -1,0 +1,24 @@
+<!-- Модальное окно "Перезвоните мне" -->
+<div class="modal fade" id="call-me" tabindex="-1" role="dialog" aria-labelledby="call-me-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="call-me__close close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="thank-you" class="call-me">
+          <input type="hidden" name="url" value="https://artmusicpro.ru<%- url_for(page.path) %>"/>
+          <div class="call-me__input-group">
+              <svg class="call-me__icon">
+                <%- partial('use-in-svg', {icon: "phone"}) %>
+              </svg>
+              <input name="client-phone" class="call-me__input" type="tel" placeholder="Введите номер телефона"/>
+          </div>
+          <input class="call-me__submit" type="submit" value="Перезвоните мне"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

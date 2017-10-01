@@ -1,0 +1,21 @@
+<% 
+  var menu = site.data.menu.menu;
+  var obj = "";
+  for (var link in menu) {
+    if (menu[link].alias == section) {
+      var obj = menu[link];
+    }
+  } 
+%>
+
+<div class="footer-block">
+  <h3 class="footer-block__title"><%= obj.name %></h3>
+  <ul class="footer-menu">
+    <% for (var sublink in obj.children) { %>
+      <li class="footer-menu__item"><a href="<%= obj.children[sublink].url %>" class="footer-menu__link"><%= obj.children[sublink].name %></a></li>
+    <% } %>
+  </ul>
+  <% if(isCallToActionButton) { %>
+    <%- partial('../common/first-lesson-link') %>
+  <% } %>
+</div>

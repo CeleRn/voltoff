@@ -1,0 +1,32 @@
+<% if(page.breadcrumbs || page.breadcrumbCurrent) { %>
+<div class="breadcrumb-block">
+  <div class="container">
+    <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+      <li class="breadcrumb__item">
+        <a href="/" class="breadcrumb__link">Главная</a>
+      </li>
+    <% var i=1 %>
+    <% for(var breadcrumb in page.breadcrumbs) { %>
+      <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a class="breadcrumb__link" itemprop="item" href="<%= page.breadcrumbs[breadcrumb].url %>">
+          <span itemprop="name"><%= page.breadcrumbs[breadcrumb].name %></span></a>
+        <meta itemprop="position" content="<%= i %>" />
+        <% i++; %>
+      </li>
+    <% } %>
+    <% if(typeof page.breadcrumbCurrent != "undefined") { %>
+      <% if(page.breadcrumbCurrent) { %>
+        <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a class="breadcrumb__link" itemprop="item" href="<%= url_for(page.path) %>">
+            <span itemprop="name"><%= page.title %></span></a>
+          <meta itemprop="position" content="<%= i %>" />
+        </li>
+      <% } %>
+    <% } %>
+    </ol>
+  </div>
+</div>
+<% } %>
+
+
+

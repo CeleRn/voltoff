@@ -1,0 +1,33 @@
+<div class="contacts">
+  <ul class="contacts-list">
+    <li class="contacts-list-item">
+      <div class="contacts-list-item__icon">
+        <svg class="contacts-list-item__icon-image">
+          <%- partial('use-in-svg', {icon: "phone"}) %>
+        </svg>
+      </div>
+      <p class="contacts-list-item__phone"><%= site.data.company.phone %></p>
+      <a href="#call-me" class="contacts-list-item__link" data-toggle="modal" data-target="#call-me">Заказать обратный звонок</a>
+    </li>
+    <li class="contacts-list-item">
+      <div class="contacts-list-item__icon">
+        <svg class="contacts-list-item__icon-image">
+          <%- partial('use-in-svg', {icon: "map-marker"}) %>
+        </svg>
+      </div>
+      <address class="contacts-list-item__address">
+          <p class="contacts-list-item__strong"><%= site.data.company.city %></p>
+          <p><%= site.data.company.address %></p>
+      </address>
+    </li>
+    <li class="contacts-list-item">
+      <div class="contacts-list-item__icon">
+        <svg class="contacts-list-item__icon-image contacts-list-item__icon-image_email">
+          <%- partial('use-in-svg', {icon: "email"}) %>
+        </svg>
+      </div>
+      <p class="contacts-list-item__email"><%= site.data.company.email %></p>
+      <a href="mailto:<%= site.data.company.email %>" class="contacts-list-item__link">Написать нам письмо</a>
+    </li>
+  </ul>
+</div>

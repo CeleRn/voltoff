@@ -1,0 +1,15 @@
+<div class="main__title">
+  <% if(is_home()) { %>
+    <h1 class="title">Главная</h1>
+  <% } else { %>
+    <h1 class="title"><%= h1Escape(page) %></h1>
+  <% } %>
+  <div class="after-title">
+    <% if(page.subtitle) { %>
+      <div class="after-title__place">в Химках</div>
+    <% } %>
+    <div class="after-title__share">
+      <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,viber,whatsapp,skype,telegram" data-counter=""></div>
+    </div>
+  </div>
+</div>

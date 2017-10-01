@@ -1,0 +1,34 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <%- partial('footer/block-menu', { section: 'school', isCallToActionButton: false }) %>
+      <%- partial('footer/block-menu', { section: 'about-guitars', isCallToActionButton: false }) %>
+      <%- partial('footer/block-menu', { section: 'education', isCallToActionButton: true }) %>
+
+      <div class="footer-block footer-block_school">
+        <h3 class="footer-block__title">Студия гитары</h3>
+        <div class="school">
+          <h4 class="school__name">ArtMusic Pro</h4>
+          <address class="school__address">
+            <span><%= site.data.company.city %></span>, 
+            <span><%= site.data.company.address %></span>
+          </address>
+          <p class="school__phone"><%= site.data.company.phone %></p>
+          <p class="school__email"><a href="mailto:<%= site.data.company.email %>" class="school__mail-link"><%= site.data.company.email %></a></p>
+        </div>
+  
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="copyright">Copyright © 2017 ArtMusic Pro</div>
+      <div class="legal-menu">
+        <a href="/terms-of-use.html" class="legal-menu__item">Соглашение о пользовании сайтом</a>
+        <a href="/privacy-policy.html" class="legal-menu__item">Политика конфиденциальности</a>
+      </div>
+      <a href="https://www.udelta.ru" class="autor" target="_blank">
+        <span class="autor__text">Сайт разработан</span>
+        <img src="/assets/images/logo-udelta.svg" alt="Udelta - digital marketing" class="autor__logo" />
+      </a>
+    </div>
+  </div>
+</footer>

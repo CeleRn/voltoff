@@ -8,8 +8,9 @@ tree = ET.parse('products.xml')
 root = tree.getroot()
 
 root_dir = 'source'
-goods_dir = '_goods'
+goods_dir = '_posts'
 slash = '\\'
+slashPath = '/'
 try:
     os.mkdir(root_dir)
     os.chdir(root_dir)
@@ -42,7 +43,7 @@ for category in categories.iter('category'):
 
 
 def mk_way(category_obj):
-    dir_way = translit_string(category_obj.text) + slash
+    dir_way = translit_string(category_obj.text) + slashPath
     # print(dir_way)
     if category_obj.attrib.get('parentId'):
         for parent in categories.iter('category'):
@@ -61,6 +62,7 @@ print(category_id_way.get('53740'))
 def create_index_file(params):
     file = open("index.md",'w',encoding='utf-8')
     file.write('---\n')
+    file.write('layout: section\n')
     file.write('id: ' + params[0]+ '\n')
     file.write('title: ' + params[1]+ '\n')
     file.write('parentId: ' + str(params[2])+ '\n')
@@ -108,12 +110,12 @@ def create_md_file(offer_obj, category_id_way):
     # file.write(': ' + offer.attrib)
     # file.write(': ' + offer.text)
     # file.write(': ' + offer.attrib)
-    file.write('price: ' + offer.find('price').text + '\n')
+    file.write('layout: good\n')
     file.write('categoryId: ' + offer.find('categoryId').text + '\n')
-    file.write('categoryPath: ' + category_id_way.get(offer.find('categoryId').text) + '\n')
+    file.write('section: ' + category_id_way.get(offer.find('categoryId').text) + '\n')
     file.write('country_of_origin: ' + offer.find('country_of_origin').text + '\n')
     file.write('delivery: ' + offer.find('delivery').text + '\n')
-    file.write('description: ' + offer.find('description').text + '\n')
+    file.write('description: \"' + offer.find('description').text.replace('"', '\"') + '\"\n')
     file.write('local_delivery_cost: ' + offer.find('local_delivery_cost').text + '\n')
     file.write('manufacturer_warranty: ' + offer.find('manufacturer_warranty').text + '\n')
     if offer.find('model'):
@@ -152,7 +154,7 @@ def create_md_file(offer_obj, category_id_way):
             file.write('typePrefix: ' + offer.find('typePrefix').text + '\n')
         else:
             file.write('typePrefix: null' + '\n')
-    file.write('url: ' + offer.find('url').text + '\n')
+    file.write('buyUrl: ' + offer.find('url').text + '\n')
     # file.write('vendor: ' + offer.find('vendor').text + '\n')
     if offer.find('vendor'):
         if offer.find('vendor').text:

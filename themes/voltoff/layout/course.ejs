@@ -1,0 +1,111 @@
+<main class="main">
+  <div class="container">
+    <%- partial('common/main-title') %>
+    <div class="main__image">
+      <img class="main-image" src="<%= page.banner %>" width="400" alt="<%= page.title %>">
+    </div>
+    <div class="main__content">
+      <div class="content">
+        <%- page.content %>
+      </div>
+    </div>
+  </div>
+  <div class="attributes">
+    <div class="container">
+      
+      <div class="attribute">
+        <div class="attribute__icon">
+          <svg class="attribute__icon-image">
+            <%- partial('common/use-in-svg', {icon: "family"}) %>
+          </svg>
+        </div>
+        <h3 class="attribute__title">Возраст</h3>
+        <div class="attribute__value">
+          <% if(page.age != "") { %><%= page.age %><% } else { %>Любой<% } %>
+        </div>
+      </div>
+      
+      <div class="attribute">
+        <div class="attribute__icon">
+          <svg class="attribute__icon-image">
+            <%- partial('common/use-in-svg', {icon: "group"}) %>
+          </svg>
+        </div>
+        <h3 class="attribute__title">Состав</h3>
+        <div class="attribute__value">
+          <ul class="attribute__value-list">
+              <% for(var i=0; i<page.members.length; i++) {%>
+                  <li class="attribute__value-item"><%= page.members[i] %></li>
+               <% } %>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="attribute">
+        <div class="attribute__icon">
+          <svg class="attribute__icon-image">
+            <%- partial('common/use-in-svg', {icon: "place"}) %>
+          </svg>
+        </div>
+        <h3 class="attribute__title">Место занятий</h3>
+        <div class="attribute__value"
+          <% console.log(page.place) %></div>
+          <ul class="attribute__value-list">
+            <% for(var i=0; i<page.place.length; i++) {%>
+              <li class="attribute__value-item"><%= page.place[i] %></li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="attribute">
+        <div class="attribute__icon attribute__icon_accent attribute__icon_cost">
+          <svg class="attribute__icon-image attribute__icon-image_accent attribute__icon-image_cost">
+            <%- partial('common/use-in-svg', {icon: "cost"}) %>
+          </svg>
+        </div>
+        <h3 class="attribute__title">Стоимость курса</h3>
+        <div class="attribute__value"><% if(page.price != "") { %><%= page.price %><% } else { %>Договорная<% } %></div>
+        <% if(page.morePrice != "") { %>
+          <a href="#" class="attribute__link-more" id="link-more-price">Подробнее</a>
+        <% } %>
+        
+      </div>
+      
+    </div>
+  </div>
+  <div class="more-course">
+    <div class="container">
+      <section class="more-course__program program">
+        <h2 class="program__title">Программа курса</h2>
+        <p class="program__lesson">
+          <span class="program__lesson-number"><%= page.numberLesson %></span>&nbsp;
+
+          <span class="program__lesson-link" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Продолжительность одного занятия 60 минут"><%- declOfNum(page.numberLesson, ['занятие', 'занятия', 'занятий']) %></span>
+
+          <span class="program__lesson-separator">/</span>
+          <span class="program__lesson-number"><%= page.month %></span>&nbsp;<%- declOfNum(page.month, ['месяц', 'месяца', 'месяцев']) %>
+          
+        </p>
+        <ul class="program__list">
+          <% console.log(page.program) %>
+          <% for(var i=0; i<page.program.length; i++) {%>
+            <li class="program__list-item"><%= page.program[i] %></li>
+          <% } %>
+        </ul>
+      </section>
+      <section class="more-course__result result">
+        <h2 class="result__title">Чему Вы научитесь, пройдя курс</h2>
+        <div class="result__text"><%- markdown(page.result) %></div>
+      </section>
+    </div>
+  </div>
+  <% if(page.morePrice != "") { %>
+    <section class="price-more" id="price-more">
+      <div class="container">
+        <h2 class="price-more__title">Стоимость курса</h2>
+        <div class="price-more__text"><%- markdown(page.morePrice) %></div>
+      </div>
+    </section>
+  <% } %>
+</main>
